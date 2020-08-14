@@ -14,23 +14,37 @@ parser <- ArgumentParser()
 parser$add_argument("--file")
 parser$add_argument("--show_sheets", action = "store_true", default = FALSE)
 parser$add_argument("--tocsv", action = "store_true", default = FALSE)
+parser$add_argument("--sheet", default = 1)
 parser$add_argument("--n", type = "integer", default = 10)
 parser$add_argument("--skip", type = "integer", default = 0)
 
 args <- parser$parse_args()
 
 if (args$show_sheets) {
+  
   print(glue("the sheets in the file {args$file} are:"))
   print(glue("{excel_sheets(path.expand(args$file))}"))
   cat("\n")
+  
 }
 
 if (args$tocsv) {
-  print(glue("showing first {args$n} rows"))
-  read_excel(args$file,
+  
+  if (!is.na(suppressWarnings(as.integer(args$sheet)))) {
+    sheet_name <- as.numeric(args$sheet)
+  } else {
+    sheet_name <- args$sheet
+  }
+  
+  print(glue("showing {args$n} rows from sheet {sheet_name} after skipping {args$skip}"))
+  read_excel(path.expand(args$file),
              guess_max = 1000000,
-             skip = args$skip) %>%
+             skip = args$skip,
+             sheet = sheet_name) %>%
     head(n = args$n) %>%
     write.table(file = "", sep = "|", quote = FALSE)
   cat("\n")
+  
 }
+
+# done.
