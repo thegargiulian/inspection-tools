@@ -12,10 +12,10 @@ pacman::p_load(argparse, readxl, dplyr, readr, glue)
 
 parser <- ArgumentParser()
 parser$add_argument("--file")
-parser$add_argument("--n", default = 10)
 parser$add_argument("--show_sheets", action = "store_true", default = FALSE)
-parser$add_argument("--tocsv", action = "store_true", default = TRUE)
-parser$add_argument("--skip", default = 0)
+parser$add_argument("--tocsv", action = "store_true", default = FALSE)
+parser$add_argument("--n", type = "integer", default = 10)
+parser$add_argument("--skip", type = "integer", default = 0)
 
 args <- parser$parse_args()
 
@@ -25,10 +25,12 @@ if (args$show_sheets) {
   cat("\n")
 }
 
-print(glue("showing first {args$n} rows in tidy tibble format"))
-read_excel(args$file,
-           guess_max = 1000000,
-           skip = as.integer(args$skip)) %>%
-  head(n = as.integer(args$n))
-
-# TODO: add tocsv functionality
+if (args$tocsv) {
+  print(glue("showing first {args$n} rows"))
+  read_excel(args$file,
+             guess_max = 1000000,
+             skip = args$skip) %>%
+    head(n = args$n) %>%
+    write.table(file = "", sep = "|", quote = FALSE)
+  cat("\n")
+}
