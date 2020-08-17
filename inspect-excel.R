@@ -15,8 +15,9 @@ parser$add_argument("--file")
 parser$add_argument("--show_sheets", action = "store_true", default = FALSE)
 parser$add_argument("--tocsv", action = "store_true", default = FALSE)
 parser$add_argument("--sheet", default = 1)
-parser$add_argument("--n", type = "integer", default = 10)
+parser$add_argument("--guess_max", type = "integer", default = 1000000)
 parser$add_argument("--skip", type = "integer", default = 0)
+parser$add_argument("--n", type = "integer", default = 10)
 
 args <- parser$parse_args()
 
@@ -38,7 +39,7 @@ if (args$tocsv) {
   
   print(glue("showing {args$n} rows from sheet {sheet_name} after skipping {args$skip}"))
   read_excel(path.expand(args$file),
-             guess_max = 1000000,
+             guess_max = args$guess_max,
              skip = args$skip,
              sheet = sheet_name) %>%
     head(n = args$n) %>%
