@@ -16,10 +16,10 @@ parser$add_argument("file",
                     help = "the path of to the file to inspect.")
 parser$add_argument("--show_sheets",
                     action = "store_true", default = FALSE,
-                    help = "show the names of the sheets in the file (default: FALSE).")
+                    help = "show the names of the sheets in the file (no flag defaults to FALSE).")
 parser$add_argument("--tocsv",
                     action = "store_true", default = FALSE,
-                    help = "display the specified contents of the file delimited by |. (default: FALSE).")
+                    help = "display the specified contents of the file delimited by |. (no flag defaults to FALSE).")
 parser$add_argument("--sheet",
                     default = 1,
                     help = "sheet to read in. accepts the sheet name or its position (default: 1).")
