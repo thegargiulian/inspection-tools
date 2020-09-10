@@ -33,22 +33,22 @@ parser$add_argument("--n",
 args <- parser$parse_args()
 
 if (args$show_sheets) {
-  
+
   cat("\n")
   print(glue("the sheets in the file {args$file} are:"))
   print(glue("{excel_sheets(path.expand(args$file))}"))
   cat("\n")
-  
+
 }
 
 if (args$tocsv) {
-  
+
   if (!is.na(suppressWarnings(as.integer(args$sheet)))) {
     sheet_name <- as.numeric(args$sheet)
   } else {
     sheet_name <- args$sheet
   }
-  
+
   cat("\n")
   print(glue("showing {args$n} rows from sheet {sheet_name} after skipping {args$skip}"))
   cat("\n")
@@ -59,7 +59,7 @@ if (args$tocsv) {
     head(n = args$n) %>%
     write.table(file = "", sep = "|", quote = FALSE)
   cat("\n")
-  
+
 }
 
 # done.
