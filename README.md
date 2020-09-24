@@ -21,7 +21,7 @@ optional arguments:
   --n N          number of rows to display.
 ```
 
-## `inspect-parquet` - for inspecting `.parquet`
+## `inspect-parquet` - for inspecting `.parquet` files
 
 ```
 usage: ./inspect-parquet.R [-h] [--n N] file
