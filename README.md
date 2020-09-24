@@ -20,3 +20,16 @@ optional arguments:
   --skip SKIP    number of rows to skip (default: 0).
   --n N          number of rows to display.
 ```
+
+## `inspect-parquet` - for inspecting `.parquet`
+
+```
+usage: ./inspect-parquet.R [-h] [--n N] file
+
+positional arguments:
+  file        the path of to the file to inspect.
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --n N       number of rows to display.
+```
