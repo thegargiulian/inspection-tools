@@ -33,3 +33,16 @@ optional arguments:
   -h, --help  show this help message and exit
   --n N       number of rows to display.
 ```
+
+## `inspect-feather` - for inspecting `.feather` files
+
+```
+usage: ./inspect-feather.R [-h] [--n N] file
+
+positional arguments:
+  file        the path of to the file to inspect.
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --n N       number of rows to display.
+```
