@@ -4,7 +4,7 @@
 # Maintainers: MG
 # Copyright:   2020, HRDAG, GPL v2 or later
 # =========================================
-# inspection-tools/inspect-parquet.R
+# inspection-tools/inspect-feather.R
 
 if (!require('pacman', quietly = TRUE)) {install.packages('pacman')}
 
