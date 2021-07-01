@@ -3,11 +3,11 @@
 # Authors:     MG
 # Maintainers: MG
 # =========================================
-# inspection-tools/inspect-feather.R
+# inspection-tools/inspect-json.R
 
 if (!require('pacman', quietly = TRUE)) {install.packages('pacman')}
 
-pacman::p_load(argparse, arrow, dplyr, readr, glue)
+pacman::p_load(argparse, rjson, dplyr, glue)
 
 parser <- ArgumentParser()
 parser$add_argument("file",
@@ -22,7 +22,7 @@ args <- parser$parse_args()
 cat("\n")
 print(glue("showing first {args$n} rows"))
 cat("\n")
-read_feather(path.expand(args$file)) %>%
+fromJSON(file = path.expand(args$file)) %>%
     head(n = args$n) %>%
     write.table(file = "", sep = "|", quote = FALSE)
 cat("\n")

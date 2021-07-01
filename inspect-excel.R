@@ -2,7 +2,6 @@
 #
 # Authors:     MG
 # Maintainers: MG
-# Copyright:   2020, HRDAG, GPL v2 or later
 # =========================================
 # inspection-tools/inspect-excel.R
 
