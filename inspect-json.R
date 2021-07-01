@@ -7,7 +7,7 @@
 
 if (!require('pacman', quietly = TRUE)) {install.packages('pacman')}
 
-pacman::p_load(argparse, rjson, dplyr, glue)
+pacman::p_load(argparse, rjson, dplyr, glue, tibble)
 
 parser <- ArgumentParser()
 parser$add_argument("file",
@@ -23,6 +23,7 @@ cat("\n")
 print(glue("showing first {args$n} rows"))
 cat("\n")
 fromJSON(file = path.expand(args$file)) %>%
+    as_tibble() %>%
     head(n = args$n) %>%
     write.table(file = "", sep = "|", quote = FALSE)
 cat("\n")
